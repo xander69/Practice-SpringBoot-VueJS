@@ -1,22 +1,22 @@
 const app = Vue.createApp({
-    template: '<MessageList :messages="messages"/>',
-    data() {
-        return {
-            messages: [
-                {id: '1', text: 'First message'},
-                {id: '2', text: 'Second message'},
-                {id: '3', text: 'Third message'}
-            ]
-        }
-    }
+    template: '<MessageList/>'
 })
 
 app.component('MessageList', {
-    props: ['messages'],
     template:
         '<div>' +
         '<MessagesRow v-for="message in messages" :key="message.id" :message="message"/>' +
-        '</div>'
+        '</div>',
+    created() {
+        axios.get('/message').then(response =>
+            response.data.forEach(message => this.messages.push(message))
+        )
+    },
+    data() {
+        return {
+            messages: []
+        }
+    }
 })
 
 app.component('MessagesRow', {

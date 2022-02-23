@@ -7,6 +7,7 @@
 * Spring Boot
 * VueJS
 * Rest API
+* Axios
 
 ### References
 
