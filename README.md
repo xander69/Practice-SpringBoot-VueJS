@@ -8,6 +8,7 @@
 * Spring Data
 * VueJS
 * Rest API
+* Jackson
 * Axios
 
 ### References

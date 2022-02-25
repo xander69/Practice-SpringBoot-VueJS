@@ -1,5 +1,6 @@
 package org.xander.practice.webapp.vuejs.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xander.practice.webapp.vuejs.entity.Message;
+import org.xander.practice.webapp.vuejs.entity.Views;
 import org.xander.practice.webapp.vuejs.service.MessageService;
 
 import java.util.List;
@@ -27,12 +29,14 @@ public class MessageController {
   }
 
   @GetMapping
+  @JsonView(Views.IdName.class)
   public @ResponseBody
   List<Message> list() {
     return messageService.getAllMessages();
   }
 
   @GetMapping("/{id}")
+  @JsonView(Views.FullMessage.class)
   public @ResponseBody
   Message getOne(@PathVariable("id") Message message) {
     return message;
