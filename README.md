@@ -10,6 +10,7 @@
 * Rest API
 * Jackson
 * Axios
+* OAuth2
 
 ### References
 
@@ -49,3 +50,10 @@
    ```postgresql
    create database vuejs;
    ```
+
+5. Подключаем Spring Security и oAuth2. Spring Boot REST
+
+   https://www.youtube.com/watch?v=-ohlXEJeRX8
+
+   Tutorial:
+   https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html
