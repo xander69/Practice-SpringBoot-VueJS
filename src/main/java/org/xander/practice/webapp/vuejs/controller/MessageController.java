@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.xander.practice.webapp.vuejs.model.MessageModel;
+import org.xander.practice.webapp.vuejs.entity.Message;
 import org.xander.practice.webapp.vuejs.service.MessageService;
 
 import java.util.List;
@@ -28,31 +28,31 @@ public class MessageController {
 
   @GetMapping
   public @ResponseBody
-  List<MessageModel> list() {
+  List<Message> list() {
     return messageService.getAllMessages();
   }
 
   @GetMapping("/{id}")
   public @ResponseBody
-  MessageModel getOne(@PathVariable Long id) {
-    return messageService.getMessageById(id);
+  Message getOne(@PathVariable("id") Message message) {
+    return message;
   }
 
   @PostMapping
   public @ResponseBody
-  MessageModel create(@RequestBody MessageModel messageModel) {
-    return messageService.addMessage(messageModel);
+  Message create(@RequestBody Message message) {
+    return messageService.addMessage(message);
   }
 
   @PutMapping("/{id}")
   public @ResponseBody
-  MessageModel update(@PathVariable Long id,
-                      @RequestBody MessageModel messageModel) {
-    return messageService.updateMessage(id, messageModel);
+  Message update(@PathVariable("id") Message messageFromDb,
+                 @RequestBody Message message) {
+    return messageService.updateMessage(messageFromDb, message);
   }
 
   @DeleteMapping("/{id}")
-  public void delete(@PathVariable Long id) {
-    messageService.removeMessage(id);
+  public void delete(@PathVariable("id") Message message) {
+    messageService.removeMessage(message);
   }
 }

@@ -5,6 +5,7 @@
 * Gradle
 * Java 8
 * Spring Boot
+* Spring Data
 * VueJS
 * Rest API
 * Axios
@@ -37,3 +38,13 @@
 3. Vue.js - отображение и изменение данных с сервера (часть 2). Spring Boot REST
 
    https://www.youtube.com/watch?v=E0S1ZrQP0-Y
+
+4. Подключаем базу данных, настраиваем Jackson. Spring Boot REST
+
+   https://www.youtube.com/watch?v=mGfiV9WDd6Y
+   ```
+   docker run -d -e POSTGRES_PASSWORD=postgres --name home_pg -p 5432:5432 postgres
+   ```
+   ```postgresql
+   create database vuejs;
+   ```
