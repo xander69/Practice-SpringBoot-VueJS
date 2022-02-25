@@ -33,3 +33,7 @@
 
    Документация по JS:
    > https://learn.javascript.ru/
+
+3. Vue.js - отображение и изменение данных с сервера (часть 2). Spring Boot REST
+
+   https://www.youtube.com/watch?v=E0S1ZrQP0-Y
