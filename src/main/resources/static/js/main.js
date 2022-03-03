@@ -8,25 +8,41 @@ function getMessageIndex(list, id) {
 }
 
 const app = Vue.createApp({
-    template: '<MessageList/>'
+    template:
+        '<div>' +
+        '<h1>Messenger</h1>' +
+        '<div v-if="!profile">' +
+        'You need to sign in with <a href="/login">Keycloak</a>' +
+        '</div>' +
+        '<div v-else>' +
+        '<div>' +
+        '<img :src="profile.userpic" alt="userpic" width="64" height="64"/>' +
+        '{{profile.name}} <a href="/logout">Exit</a>' +
+        '</div>' +
+        '<br/>' +
+        '<MessageList :messages="messages"/>' +
+        '</div>' +
+        '</div>',
+    data() {
+        return {
+            messages: frontendData.messages,
+            profile: frontendData.profile
+        }
+    },
 })
 
 app.component('MessageList', {
+    props: ['messages'],
     template:
         '<div>' +
         '<MessageForm :messages="messages" :messageToEdit="messageToEdit"/>' +
+        '<br/>' +
         '<MessagesRow v-for="message in messages" :key="message.id" :message="message"' +
         ' :messages="messages" :editMethod="editMethod"/>' +
         '</div>',
-    created() {
-        axios.get('/message').then(response =>
-            response.data.forEach(message => this.messages.push(message))
-        )
-    },
     data() {
         return {
-            messageToEdit: null,
-            messages: []
+            messageToEdit: null
         }
     },
     methods: {
