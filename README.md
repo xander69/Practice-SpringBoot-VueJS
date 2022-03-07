@@ -62,7 +62,7 @@
 6. Spring Security OAuth2 Tutorial with Keycloak | Full Course:
    https://www.youtube.com/watch?v=t9O99l4gjAc
    ```
-   docker run -d -p 3100:8080 --name home_keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:17.0.0 start-dev
+   docker run -d -p 3100:8080 --name home_keycloack -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:17.0.0 start-dev
    ```
 
 7. Настраиваем Spring Security и oAuth2 в Vue.js. Spring Boot REST
