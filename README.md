@@ -69,7 +69,7 @@
 
    https://www.youtube.com/watch?v=B0887PLJuSY
 
-8. Spring Boot and VueJS
+8. Spring Boot + VueJS + Keycloak
    
    Update node:
    ```
@@ -81,10 +81,19 @@
    ```
    Create project:
    ```
+   cd .\src\frontend
    vue create frontend --no-git
    ```
    Build and run frontend:
    ```
    npm run build
    npm run serve
+   ```
+   Install axios
+   ```
+   npm install --save axios vue-axios
+   ```
+   Install keycloak-js
+   ```
+   npm install --save keycloak-js
    ```
