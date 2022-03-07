@@ -1,19 +1,17 @@
 <template>
   <div>
-    <img :src="user.userpic" alt="userpic" class="userpic"/>
+    <div id="userpic">
+      <img :src="user.userpic" alt="userpic"/><br/>
+      <a href="#" @click="logout">Sign out</a>
+    </div>
     <h1>Hello, {{ user.name }}!</h1>
-    <ul>
-      <li>ID: {{ user.id }}</li>
-      <li>Email: {{ user.email }}</li>
-      <li>Gender: {{ user.gender }}</li>
-      <li>Locale: {{ user.locale }}</li>
-    </ul>
-    <a href="#" @click="logout">Sign out</a>
+    <MessageList/>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import MessageList from '@/components/MessageList'
 
 const AUTHORIZATION_HEADER = 'Authorization'
 const TOKEN_MIN_VALIDITY_SECONDS = 70
@@ -21,6 +19,9 @@ const TOKEN_MIN_VALIDITY_SECONDS = 70
 export default {
   name: 'App',
   props: ['keycloak'],
+  components: {
+    MessageList
+  },
   created() {
     axios.interceptors.request.use(async config => {
       await this.keycloak.updateToken(TOKEN_MIN_VALIDITY_SECONDS)
@@ -57,9 +58,11 @@ export default {
 </script>
 
 <style>
-.userpic {
+#userpic {
+  float: right;
+}
+#userpic img {
   width: 60px;
   height: 60px;
-  float: right;
 }
 </style>

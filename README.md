@@ -97,3 +97,7 @@
    ```
    npm install --save keycloak-js
    ```
+
+9. Настраиваем Webpack и разбиваем фронт на модули. Spring Boot REST
+
+   https://www.youtube.com/watch?v=y5zxAriT0UA

@@ -18,7 +18,7 @@ import org.xander.practice.webapp.vuejs.service.MessageService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/api/message")
 public class MessageController {
 
   private final MessageService messageService;
