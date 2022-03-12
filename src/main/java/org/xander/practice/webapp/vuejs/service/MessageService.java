@@ -37,4 +37,9 @@ public class MessageService {
   public void removeMessage(Message message) {
     messageRepository.delete(message);
   }
+
+  public Message saveMessageFromWebSocket(Message message) {
+    message.setChangeDt(new Date());
+    return messageRepository.save(message);
+  }
 }

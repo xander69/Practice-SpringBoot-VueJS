@@ -12,6 +12,7 @@
 <script>
 import axios from 'axios'
 import MessageList from '@/components/MessageList'
+import {connectWs, disconnectWs} from '@/util/ws'
 
 const AUTHORIZATION_HEADER = 'Authorization'
 const TOKEN_MIN_VALIDITY_SECONDS = 70
@@ -32,6 +33,7 @@ export default {
     axios.interceptors.response.use((response) => {
       return response
     })
+    connectWs()
   },
   data() {
     return {
@@ -48,6 +50,7 @@ export default {
     logout() {
       const logoutOptions = {redirectUri: "http://localhost:8080/"}
       this.keycloak.logout(logoutOptions).then((success) => {
+        disconnectWs()
         console.log("--> log: logout success ", success)
       }).catch((error) => {
         console.log("--> log: logout error ", error)

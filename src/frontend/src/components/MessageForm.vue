@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import axios from "axios"
+import {sendMessage} from '@/util/ws'
 
 export default {
   name: "MessageForm",
-  props: ['messages', 'messageToEdit', 'addMessage', 'updateMessage'],
+  props: ['messages', 'messageToEdit'],
   data() {
     return {
       text: '',
@@ -25,20 +25,10 @@ export default {
   },
   methods: {
     save() {
-      const message = {text: this.text}
-      if (this.id) {
-        axios.put(`/api/message/${this.id}`, message).then(response => {
-          const data = response.data
-          this.updateMessage(data)
-          this.text = ''
-          this.id = ''
-        })
-      } else {
-        axios.post('/api/message', message).then(response => {
-          this.addMessage(response.data)
-          this.text = ''
-        })
-      }
+      const message = {id: this.id, text: this.text}
+      sendMessage(message)
+      this.text = ''
+      this.id = ''
     }
   }
 }

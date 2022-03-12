@@ -8,6 +8,9 @@ module.exports = {
     proxy: {
       '^/api/': {
         target: 'http://localhost:8282'
+      },
+      '^/messenger-websocket/': {
+        target: 'http://localhost:8282'
       }
     }
   }

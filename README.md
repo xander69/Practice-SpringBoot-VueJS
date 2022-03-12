@@ -12,6 +12,7 @@
 * Axios
 * OAuth2
 * Keycloak
+* WebSocket, STOMP, SockJS
 
 ### References
 
@@ -101,3 +102,12 @@
 9. Настраиваем Webpack и разбиваем фронт на модули. Spring Boot REST
 
    https://www.youtube.com/watch?v=y5zxAriT0UA
+
+10. Подключаем WebSocket (SockJS + Stomp). Spring Boot REST
+
+    https://www.youtube.com/watch?v=TtcCbDddhrI
+
+     ```shell script
+     npm i sockjs-client
+     npm i @stomp/stompjs
+     ```

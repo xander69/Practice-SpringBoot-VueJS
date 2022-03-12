@@ -1,9 +1,7 @@
 <template>
   <div style="position: relative; width: 300px;">
     <MessageForm :messages="messages"
-                 :messageToEdit="messageToEdit"
-                 :addMessage="addMessage"
-                 :updateMessage="updateMessage"/>
+                 :messageToEdit="messageToEdit"/>
     <MessageRow v-for="message in messages"
                 :key="message.id"
                 :message="message"
@@ -16,7 +14,8 @@
 <script>
 import MessageRow from '@/components/MessageRow'
 import MessageForm from '@/components/MessageForm'
-import axios from "axios"
+import axios from 'axios'
+import {addHandler} from '@/util/ws'
 
 function getMessageIndex(list, id) {
   for (let i = 0; i < list.length; i++) {
@@ -43,18 +42,26 @@ export default {
         .then(response => {
           this.messages = response.data
         })
+    addHandler(data => {
+      let index = getMessageIndex(this.messages, data.id)
+      if (index > -1) {
+        this.messages.splice(index, 1, data)
+      } else {
+        this.messages.push(data)
+      }
+    })
   },
   methods: {
     editMessage(message) {
       this.messageToEdit = message;
     },
-    addMessage(message) {
-      this.messages.push(message)
-    },
-    updateMessage(message) {
-      const index = getMessageIndex(this.messages, message.id);
-      this.messages.splice(index, 1, message);
-    },
+    // addMessage(message) {
+    //   this.messages.push(message)
+    // },
+    // updateMessage(message) {
+    //   const index = getMessageIndex(this.messages, message.id);
+    //   this.messages.splice(index, 1, message);
+    // },
     deleteMessage(message) {
       axios.delete(`/api/message/${message.id}`).then(response => {
         if (response.status === 200) {
