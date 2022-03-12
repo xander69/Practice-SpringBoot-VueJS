@@ -1,6 +1,11 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+  transpileDependencies: true,
+  pluginOptions: {
+    vuetify: {
+      // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+    }
+  }
 })
 module.exports = {
   devServer: {
@@ -13,5 +18,8 @@ module.exports = {
         target: 'http://localhost:8282'
       }
     }
+  },
+  pluginOptions: {
+    vuetify: {}
   }
 }

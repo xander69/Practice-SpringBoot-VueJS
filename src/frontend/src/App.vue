@@ -1,12 +1,42 @@
 <template>
-  <div>
-    <div id="userpic">
-      <img :src="user.userpic" alt="userpic"/><br/>
-      <a href="#" @click="logout">Sign out</a>
-    </div>
-    <h1>Hello, {{ user.name }}!</h1>
-    <MessageList/>
-  </div>
+  <v-app>
+    <v-toolbar>
+      <v-toolbar-title>
+        Messenger with Vue-3
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <div>
+        Hello, {{ user.name }}!
+      </div>
+      <div class="ml-4">
+        <img :src="user.userpic" alt="userpic" width="40"/>
+      </div>
+      <v-tooltip bottom>
+        <template v-slot:activator="{props}">
+          <v-btn @click="logout"
+                 v-bind="props">
+            <v-icon>mdi-export</v-icon>
+          </v-btn>
+        </template>
+        <span>Logout</span>
+      </v-tooltip>
+    </v-toolbar>
+    <v-main>
+      <v-container>
+        <MessageList/>
+      </v-container>
+    </v-main>
+    <v-footer app>
+      <v-card
+          elevation="0"
+          width="100%"
+          class="text-center">
+        <v-card-text>
+          Xander (c) 2022
+        </v-card-text>
+      </v-card>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
@@ -61,11 +91,4 @@ export default {
 </script>
 
 <style>
-#userpic {
-  float: right;
-}
-#userpic img {
-  width: 60px;
-  height: 60px;
-}
 </style>

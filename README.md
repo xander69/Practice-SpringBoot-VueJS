@@ -6,13 +6,14 @@
 * Java 8
 * Spring Boot
 * Spring Data
-* VueJS
+* VueJS, Vuetify
 * Rest API
 * Jackson
 * Axios
 * OAuth2
 * Keycloak
 * WebSocket, STOMP, SockJS
+* Material Design
 
 ### References
 
@@ -111,3 +112,15 @@
      npm i sockjs-client
      npm i @stomp/stompjs
      ```
+
+11. Стилизуем приложение с Vuetify (Material design). Spring Boot REST
+
+    https://www.youtube.com/watch?v=jmpxRAGJ5v0
+
+    ```shell script
+    # Once prompted, choose Vuetify 3 Preview
+    vue add vuetify
+    ```
+
+    Иконки для material-дизайна:
+    > https://material.io/resources/icons/?style=baseline
