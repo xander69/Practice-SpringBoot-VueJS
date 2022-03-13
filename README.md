@@ -124,3 +124,7 @@
 
     Иконки для material-дизайна:
     > https://material.io/resources/icons/?style=baseline
+
+12. Сериализуем с JsonView при отправке через WebSocket. Spring Boot REST
+
+    https://www.youtube.com/watch?v=pJTO0sLki_c

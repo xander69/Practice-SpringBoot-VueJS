@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {sendMessage} from '@/util/ws'
+import messageApi from '../util/messages'
 
 export default {
   name: "MessageForm",
@@ -36,7 +36,11 @@ export default {
   methods: {
     save() {
       const message = {id: this.id, text: this.text}
-      sendMessage(message)
+      if (this.id) {
+        messageApi.update(message)
+      } else {
+        messageApi.add(message)
+      }
       this.text = ''
       this.id = ''
     }

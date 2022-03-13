@@ -14,17 +14,8 @@
 <script>
 import MessageRow from '@/components/MessageRow'
 import MessageForm from '@/components/MessageForm'
-import axios from 'axios'
 import {addHandler} from '@/util/ws'
-
-function getMessageIndex(list, id) {
-  for (let i = 0; i < list.length; i++) {
-    if (list[i].id === id) {
-      return i
-    }
-  }
-  return -1
-}
+import messageApi from '../util/messages'
 
 export default {
   name: "MessageList",
@@ -39,16 +30,28 @@ export default {
     }
   },
   created() {
-    axios.get('/api/message')
-        .then(response => {
-          this.messages = response.data
-        })
+    messageApi.getAll().then(response => this.messages = response.data)
     addHandler(data => {
-      let index = getMessageIndex(this.messages, data.id)
-      if (index > -1) {
-        this.messages.splice(index, 1, data)
+      if (data.objectType === 'MESSAGE') {
+        let index = this.messages.findIndex(item => item.id === data.body.id)
+        switch (data.eventType) {
+          case 'CREATE':
+          case 'UPDATE':
+            if (index > -1) {
+              this.messages.splice(index, 1, data.body)
+            } else {
+              this.messages.push(data.body)
+            }
+            break
+          case 'REMOVE':
+            this.messages.splice(index, 1)
+            break
+          default:
+            console.error('Looks like the event type if unknown "${data.eventType}"')
+
+        }
       } else {
-        this.messages.push(data)
+        console.error('Looks like the object tpe if unknown "${data.objectType}"')
       }
     })
   },
@@ -61,24 +64,12 @@ export default {
     editMessage(message) {
       this.messageToEdit = message;
     },
-    // addMessage(message) {
-    //   this.messages.push(message)
-    // },
-    // updateMessage(message) {
-    //   const index = getMessageIndex(this.messages, message.id);
-    //   this.messages.splice(index, 1, message);
-    // },
     deleteMessage(message) {
-      axios.delete(`/api/message/${message.id}`).then(response => {
-        if (response.status === 200) {
-          this.messages.splice(this.messages.indexOf(message), 1);
-        }
-      })
+      messageApi.remove(message.id)
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

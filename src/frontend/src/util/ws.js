@@ -23,11 +23,6 @@ export function addHandler(handler) {
     handlers.push(handler)
 }
 
-export function sendMessage(message) {
-    // console.log('save message: ' + message)
-    stompClient.send('/app/changeMessage', {}, JSON.stringify(message))
-}
-
 export function disconnectWs() {
     console.log('disconnect')
     if (stompClient != null) {
