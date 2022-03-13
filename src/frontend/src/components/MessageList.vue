@@ -1,14 +1,14 @@
 <template>
-  <div style="position: relative; width: 300px;">
+  <v-container>
     <MessageForm :messages="messages"
                  :messageToEdit="messageToEdit"/>
-    <MessageRow v-for="message in messages"
+    <MessageRow v-for="message in sortedMessages"
                 :key="message.id"
                 :message="message"
                 :messages="messages"
                 :editMessage="editMessage"
                 :deleteMessage="deleteMessage"/>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -29,7 +29,8 @@ function getMessageIndex(list, id) {
 export default {
   name: "MessageList",
   components: {
-    MessageRow, MessageForm
+    MessageRow,
+    MessageForm
   },
   data() {
     return {
@@ -50,6 +51,11 @@ export default {
         this.messages.push(data)
       }
     })
+  },
+  computed: {
+    sortedMessages() {
+      return [...this.messages].sort((a, b) => -(a.id - b.id))
+    }
   },
   methods: {
     editMessage(message) {

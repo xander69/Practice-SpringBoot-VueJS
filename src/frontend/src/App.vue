@@ -22,9 +22,7 @@
       </v-tooltip>
     </v-toolbar>
     <v-main>
-      <v-container>
-        <MessageList/>
-      </v-container>
+      <MessageList/>
     </v-main>
     <v-footer app>
       <v-card

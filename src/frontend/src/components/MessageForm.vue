@@ -1,8 +1,18 @@
 <template>
-  <div>
-    <input type="text" placeholder="Write message" v-model="text"/>
-    <input type="button" value="Save" @click="save">
-  </div>
+  <v-row>
+    <v-col cols="10">
+      <v-text-field
+          counter="500"
+          label="New message"
+          placeholder="Write something"
+          v-model="text"/>
+    </v-col>
+    <v-col cols="2">
+      <v-btn @click="save">
+        Save
+      </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
