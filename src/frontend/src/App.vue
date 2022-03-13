@@ -6,10 +6,10 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <div>
-        Hello, {{ user.name }}!
+        Hello, {{ profile.name }}!
       </div>
       <div class="ml-4">
-        <img :src="user.userpic" alt="userpic" width="40"/>
+        <img :src="profile.userpic" alt="userpic" width="40"/>
       </div>
       <v-tooltip bottom>
         <template v-slot:activator="{props}">
@@ -41,6 +41,7 @@
 import axios from 'axios'
 import MessageList from '@/components/MessageList'
 import {connectWs, disconnectWs} from '@/util/ws'
+import {mapActions, mapGetters} from 'vuex'
 
 const AUTHORIZATION_HEADER = 'Authorization'
 const TOKEN_MIN_VALIDITY_SECONDS = 70
@@ -61,20 +62,20 @@ export default {
     axios.interceptors.response.use((response) => {
       return response
     })
+    this.setProfile()
+    this.setMessages()
     connectWs()
   },
-  data() {
-    return {
-      user: {}
-    }
-  },
-  mounted() {
-    axios.get('/api/user/current')
-        .then(response => {
-          this.user = response.data
-        })
+  computed: {
+    ...mapGetters([
+      'profile'
+    ])
   },
   methods: {
+    ...mapActions([
+      'setProfile',
+      'setMessages'
+    ]),
     logout() {
       const logoutOptions = {redirectUri: "http://localhost:8080/"}
       this.keycloak.logout(logoutOptions).then((success) => {

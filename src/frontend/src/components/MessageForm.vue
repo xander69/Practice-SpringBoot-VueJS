@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import messageApi from '../util/messages'
+import {mapActions} from 'vuex'
 
 export default {
-  name: "MessageForm",
-  props: ['messages', 'messageToEdit'],
+  name: 'MessageForm',
+  props: ['messageToEdit'],
   data() {
     return {
       text: '',
@@ -34,12 +34,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'addMessage',
+      'updateMessage'
+    ]),
     save() {
       const message = {id: this.id, text: this.text}
       if (this.id) {
-        messageApi.update(message)
+        this.updateMessage(message)
       } else {
-        messageApi.add(message)
+        this.addMessage(message)
       }
       this.text = ''
       this.id = ''
@@ -49,5 +53,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

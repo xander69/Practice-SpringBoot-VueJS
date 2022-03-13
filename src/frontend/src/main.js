@@ -2,6 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import Keycloak from 'keycloak-js'
 import vuetify from './plugins/vuetify'
+import store from './plugins/store'
 import {loadFonts} from './plugins/webfontloader'
 
 const keycloak = Keycloak({
@@ -17,6 +18,7 @@ keycloak.init({onLoad: 'login-required'}).then((auth) => {
         loadFonts()
         createApp(App, {keycloak: keycloak})
             .use(vuetify)
+            .use(store)
             .mount('#app')
     }
 })

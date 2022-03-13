@@ -6,7 +6,7 @@
 * Java 8
 * Spring Boot
 * Spring Data
-* VueJS, Vuetify
+* VueJS, Vuetify, Vuex
 * Rest API
 * Jackson
 * Axios
@@ -128,3 +128,11 @@
 12. Сериализуем с JsonView при отправке через WebSocket. Spring Boot REST
 
     https://www.youtube.com/watch?v=pJTO0sLki_c
+
+13. Настраиваем Vuex. Централизованное хранилище. Spring Boot REST
+
+    https://www.youtube.com/watch?v=AMb2QeeRtPM
+
+     ```shell script
+     npm install vuex@next --save
+     ```
