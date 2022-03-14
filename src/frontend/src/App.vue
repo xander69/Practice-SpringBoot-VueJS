@@ -5,12 +5,14 @@
         Messenger with Vue-3
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <div>
-        Hello, {{ profile.name }}!
-      </div>
-      <div class="ml-4">
-        <img :src="profile.userpic" alt="userpic" width="40"/>
-      </div>
+      <v-btn text
+             @click="showMessages">
+        Messages
+      </v-btn>
+      <v-btn @click="showProfile">
+        Profile
+        <img :src="profile.userpic" alt="userpic" width="40" class="ml-4"/>
+      </v-btn>
       <v-tooltip bottom>
         <template v-slot:activator="{props}">
           <v-btn @click="logout"
@@ -22,7 +24,7 @@
       </v-tooltip>
     </v-toolbar>
     <v-main>
-      <MessageList/>
+      <router-view/>
     </v-main>
     <v-footer app>
       <v-card
@@ -39,7 +41,6 @@
 
 <script>
 import axios from 'axios'
-import MessageList from '@/components/MessageList'
 import {connectWs, disconnectWs} from '@/util/ws'
 import {mapActions, mapGetters} from 'vuex'
 
@@ -49,9 +50,6 @@ const TOKEN_MIN_VALIDITY_SECONDS = 70
 export default {
   name: 'App',
   props: ['keycloak'],
-  components: {
-    MessageList
-  },
   created() {
     axios.interceptors.request.use(async config => {
       await this.keycloak.updateToken(TOKEN_MIN_VALIDITY_SECONDS)
@@ -76,6 +74,12 @@ export default {
       'setProfile',
       'setMessages'
     ]),
+    showMessages() {
+      this.$router.push('/')
+    },
+    showProfile() {
+      this.$router.push('/profile')
+    },
     logout() {
       const logoutOptions = {redirectUri: "http://localhost:8080/"}
       this.keycloak.logout(logoutOptions).then((success) => {

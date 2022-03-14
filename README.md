@@ -6,7 +6,7 @@
 * Java 8
 * Spring Boot
 * Spring Data
-* VueJS, Vuetify, Vuex
+* VueJS, Vuetify, Vuex, Router
 * Rest API
 * Jackson
 * Axios
@@ -136,3 +136,11 @@
      ```shell script
      npm install vuex@next --save
      ```
+
+14. Vue Router. Роутинг в браузере. Spring Boot REST
+
+    https://www.youtube.com/watch?v=DdCoFwiRCsw
+
+    ```shell script
+    npm i vue-router@next
+    ```
