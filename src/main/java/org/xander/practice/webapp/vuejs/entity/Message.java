@@ -48,4 +48,19 @@ public class Message {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
   private Date changeDt;
 
+  @Column(name = "LINK", length = 2000)
+  @JsonView(Views.FullMessage.class)
+  private String link;
+
+  @Column(name = "LINK_TITLE", length = 2000)
+  @JsonView(Views.FullMessage.class)
+  private String linkTitle;
+
+  @Column(name = "LINK_DESCRIPTION", length = 2000)
+  @JsonView(Views.FullMessage.class)
+  private String linkDescription;
+
+  @Column(name = "LINK_COVER", length = 2000)
+  @JsonView(Views.FullMessage.class)
+  private String linkCover;
 }

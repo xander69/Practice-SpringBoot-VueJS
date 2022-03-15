@@ -32,11 +32,11 @@ public class MessageController {
   public MessageController(MessageService messageService,
                            WsSender wsSender) {
     this.messageService = messageService;
-    this.wsSender = wsSender.getSender(ObjectType.MESSAGE, Views.IdName.class);
+    this.wsSender = wsSender.getSender(ObjectType.MESSAGE, Views.FullMessage.class);
   }
 
   @GetMapping
-  @JsonView(Views.IdName.class)
+  @JsonView(Views.FullMessage.class)
   public @ResponseBody
   List<Message> list() {
     return messageService.getAllMessages();
@@ -50,6 +50,7 @@ public class MessageController {
   }
 
   @PostMapping
+  @JsonView(Views.FullMessage.class)
   public @ResponseBody
   Message create(@RequestBody Message message) {
     Message newMessage = messageService.addMessage(message);
@@ -58,6 +59,7 @@ public class MessageController {
   }
 
   @PutMapping("/{id}")
+  @JsonView(Views.FullMessage.class)
   public @ResponseBody
   Message update(@PathVariable("id") Message messageFromDb,
                  @RequestBody Message message) {

@@ -14,6 +14,7 @@
 * Keycloak
 * WebSocket, STOMP, SockJS
 * Material Design
+* Open Graph Protocol
 
 ### References
 
@@ -144,3 +145,9 @@
     ```shell script
     npm i vue-router@next
     ```
+
+15. Open Graph Protocol: превью ссылок на сайте по микроразметке. Spring Boot Rest
+
+   https://www.youtube.com/watch?v=ZM8XkFOebuc
+
+   Twitter Card, Open Graph
