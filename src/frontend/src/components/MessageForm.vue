@@ -5,6 +5,7 @@
           counter="500"
           label="New message"
           placeholder="Write something"
+          @keyup.enter="save"
           v-model="text"/>
     </v-col>
     <v-col cols="2">
