@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 import axios from 'axios'
-import messageApi from '@/util/messages'
+import messageApi from '@/api/messages'
 
 export default createStore({
     state() {
