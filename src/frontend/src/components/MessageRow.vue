@@ -1,46 +1,33 @@
 <template>
   <v-card class="my-2">
+    <v-list-item class="d-flex">
+      <v-list-item-avatar left>
+        <v-avatar :image="message.author.userpic"></v-avatar>
+      </v-list-item-avatar>
+      <v-list-item-header>
+        <v-list-item-title>
+          {{ message.author.name }}, {{ message.createDt }}
+        </v-list-item-title>
+      </v-list-item-header>
+      <v-list-item-title v-if="message.author.id === profile.id">
+        <v-btn @click="edit">
+          Edit
+        </v-btn>
+        <v-btn @click="del">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-list-item-title>
+    </v-list-item>
+
     <MediaContent v-if="message.link" :message="message"></MediaContent>
-    <v-card-text v-else>
+    <v-card-text v-else class="text-body-1">
       {{ message.text }}
     </v-card-text>
-    <v-card-actions>
-      <v-container>
-        <v-row>
-          <v-col cols="1"
-                 align-self="center"
-                 class="text-center">
-            <img :src="message.author.userpic" alt="userpic" width="24"/>
-          </v-col>
-          <v-col cols="3"
-                 align-self="center"
-                 class="font-italic text-body-2">
-            {{ message.author.name }}
-          </v-col>
-          <v-col cols="3"
-                 align-self="center"
-                 class="font-italic text-body-2">
-            {{ message.createDt }}
-          </v-col>
-          <v-col v-if="message.author.id === profile.id"
-                 cols="5" class="text-right">
-            <v-btn @click="edit">
-              Edit
-            </v-btn>
-            <v-btn @click="del">
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-col>
-          <v-col v-else cols="5"></v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12">
-            <CommentList :comments="message.comments"
-                         :messageId="message.id"/>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card-actions>
+
+    <v-card-text>
+      <CommentList :comments="message.comments"
+                   :messageId="message.id"/>
+    </v-card-text>
   </v-card>
 </template>
 

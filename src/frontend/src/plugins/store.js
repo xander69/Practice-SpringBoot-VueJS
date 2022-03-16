@@ -52,7 +52,7 @@ export default createStore({
                 {
                     ...message,
                     comments: [
-                        ...message.comments,
+                        ...message.comments || [],
                         comment
                     ]
                 },
