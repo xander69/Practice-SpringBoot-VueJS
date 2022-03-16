@@ -1,5 +1,6 @@
 package org.xander.practice.webapp.vuejs.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +25,13 @@ public class User {
 
   @Id
   @Column(name = "ID")
+  @JsonView(Views.IdName.class)
   private String id;
   @Column(name = "NAME")
+  @JsonView(Views.IdName.class)
   private String name;
   @Column(name = "USERPIC")
+  @JsonView(Views.IdName.class)
   private String userpic;
   @Column(name = "EMAIL")
   private String email;

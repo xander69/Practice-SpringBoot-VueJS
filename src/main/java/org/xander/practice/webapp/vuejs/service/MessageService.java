@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xander.practice.webapp.vuejs.entity.Message;
+import org.xander.practice.webapp.vuejs.entity.User;
 import org.xander.practice.webapp.vuejs.model.MetaObject;
 import org.xander.practice.webapp.vuejs.repository.MessageRepository;
 
@@ -36,7 +37,8 @@ public class MessageService {
     return messageRepository.findAll();
   }
 
-  public Message addMessage(Message message) {
+  public Message addMessage(Message message, User author) {
+    message.setAuthor(author);
     message.setCreateDt(new Date());
     message.setChangeDt(new Date());
     fillMeta(message);

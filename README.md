@@ -148,6 +148,6 @@
 
 15. Open Graph Protocol: превью ссылок на сайте по микроразметке. Spring Boot Rest
 
-   https://www.youtube.com/watch?v=ZM8XkFOebuc
+    https://www.youtube.com/watch?v=ZM8XkFOebuc
 
-   Twitter Card, Open Graph
+    Twitter Card, Open Graph

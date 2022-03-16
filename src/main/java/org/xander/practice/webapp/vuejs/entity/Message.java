@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,4 +65,9 @@ public class Message {
   @Column(name = "LINK_COVER", length = 2000)
   @JsonView(Views.FullMessage.class)
   private String linkCover;
+
+  @ManyToOne
+  @JoinColumn(name = "USER_ID")
+  @JsonView(Views.FullMessage.class)
+  private User author;
 }

@@ -1,6 +1,8 @@
 package org.xander.practice.webapp.vuejs.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xander.practice.webapp.vuejs.entity.Message;
+import org.xander.practice.webapp.vuejs.entity.User;
 import org.xander.practice.webapp.vuejs.entity.Views;
 import org.xander.practice.webapp.vuejs.model.EventType;
 import org.xander.practice.webapp.vuejs.model.ObjectType;
+import org.xander.practice.webapp.vuejs.service.CustomOidcUserService;
 import org.xander.practice.webapp.vuejs.service.MessageService;
 import org.xander.practice.webapp.vuejs.service.WsSender;
 
@@ -26,12 +30,15 @@ import java.util.function.BiConsumer;
 public class MessageController {
 
   private final MessageService messageService;
+  private final CustomOidcUserService userService;
   private final BiConsumer<EventType, Message> wsSender;
 
   @Autowired
   public MessageController(MessageService messageService,
+                           CustomOidcUserService userService,
                            WsSender wsSender) {
     this.messageService = messageService;
+    this.userService = userService;
     this.wsSender = wsSender.getSender(ObjectType.MESSAGE, Views.FullMessage.class);
   }
 
@@ -52,8 +59,10 @@ public class MessageController {
   @PostMapping
   @JsonView(Views.FullMessage.class)
   public @ResponseBody
-  Message create(@RequestBody Message message) {
-    Message newMessage = messageService.addMessage(message);
+  Message create(@RequestBody Message message,
+                 KeycloakPrincipal<KeycloakSecurityContext> principal) {
+    User user = userService.loadUser(principal.getKeycloakSecurityContext().getToken());
+    Message newMessage = messageService.addMessage(message, user);
     wsSender.accept(EventType.CREATE, newMessage);
     return newMessage;
   }
