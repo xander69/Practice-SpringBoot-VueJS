@@ -73,7 +73,10 @@ export default createStore({
         },
         async addMessage({commit, state}, message) {
             const response = await messageApi.add(message)
-            const data = response.data
+            const data = {
+                ...response.data,
+                author: state.profile
+            }
             // check to avoid race condition problem
             const index = state.messages.findIndex(item => item.id === data.id)
             if (index > -1) {

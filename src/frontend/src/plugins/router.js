@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import MessageList from '@/components/MessageList'
-import ProfilePage from '@/components/ProfilePage'
+import MessageList from '@/components/message/MessageList'
+import ProfilePage from '@/components/profile/ProfilePage'
 import NotFound from '@/components/NotFound'
 
 export default createRouter({

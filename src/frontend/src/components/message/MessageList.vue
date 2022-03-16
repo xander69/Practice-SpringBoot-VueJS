@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import MessageRow from '@/components/MessageRow'
-import MessageForm from '@/components/MessageForm'
+import MessageRow from '@/components/message/MessageRow'
+import MessageForm from '@/components/message/MessageForm'
 import {addHandler} from '@/util/ws'
 import {mapGetters, mapMutations} from 'vuex'
 
