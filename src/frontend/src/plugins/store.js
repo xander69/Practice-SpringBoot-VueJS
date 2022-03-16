@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import axios from 'axios'
 import messageApi from '@/api/messages'
+import commentApi from '@/api/comments'
 
 export default createStore({
     state() {
@@ -42,6 +43,21 @@ export default createStore({
                     ...state.messages.slice(deleteIndex + 1)
                 ]
             }
+        },
+        addCommentMutation(state, comment) {
+            const updateIndex = state.messages.findIndex(item => item.id === comment.message.id)
+            const message = state.messages[updateIndex]
+            state.messages = [
+                ...state.messages.slice(0, updateIndex),
+                {
+                    ...message,
+                    comments: [
+                        ...message.comments,
+                        comment
+                    ]
+                },
+                ...state.messages.slice(updateIndex + 1)
+            ]
         }
     },
     actions: {
@@ -73,6 +89,14 @@ export default createStore({
         async removeMessage({commit}, message) {
             await messageApi.remove(message.id)
             commit('deleteMessageMutation', message)
+        },
+        async addComment({commit}, comment) {
+            const response = await commentApi.add(comment)
+            const data = {
+                ...response.data,
+                message: comment.message
+            }
+            commit('addCommentMutation', data)
         }
     }
 })

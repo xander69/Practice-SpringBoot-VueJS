@@ -5,7 +5,7 @@
 * Gradle
 * Java 8
 * Spring Boot
-* Spring Data
+* Spring Data, JPA EntityGraph
 * VueJS, Vuetify, Vuex, Router
 * Rest API
 * Jackson
@@ -151,3 +151,7 @@
     https://www.youtube.com/watch?v=ZM8XkFOebuc
 
     Twitter Card, Open Graph
+
+16. Комментарии с JPA Entity Graph. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=b2a4rVR5hiQ
