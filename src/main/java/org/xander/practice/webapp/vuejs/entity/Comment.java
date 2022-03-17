@@ -36,7 +36,7 @@ public class Comment {
   @Column(name = "CREATE_DT")
   @Temporal(TemporalType.TIMESTAMP)
   @JsonView(Views.IdName.class)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Moscow")
   private Date createDt;
 
   @ManyToOne

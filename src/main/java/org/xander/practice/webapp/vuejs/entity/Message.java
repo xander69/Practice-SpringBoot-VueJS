@@ -43,13 +43,13 @@ public class Message {
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "CREATE_DT")
   @JsonView(Views.FullMessage.class)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Moscow")
   private Date createDt;
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "CHANGE_DT")
   @JsonView(Views.FullMessage.class)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Moscow")
   private Date changeDt;
 
   @Column(name = "LINK", length = 2000)
