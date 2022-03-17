@@ -155,3 +155,7 @@
 16. Комментарии с JPA Entity Graph. Spring Boot Rest
 
     https://www.youtube.com/watch?v=b2a4rVR5hiQ
+
+17. Решение циклических ссылок в JSON. Vue debug. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=fS4gR8gttes

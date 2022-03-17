@@ -37,6 +37,12 @@ export default {
         } else {
           console.error('Looks like the event type if unknown "${data.eventType}"')
         }
+      } else if (data.objectType === 'COMMENT') {
+        if (data.eventType === 'CREATE') {
+          this.addCommentMutation(data.body)
+        } else {
+          console.error('Looks like the event type if unknown "${data.eventType}"')
+        }
       } else {
         console.error('Looks like the object tpe if unknown "${data.objectType}"')
       }
@@ -51,7 +57,8 @@ export default {
     ...mapMutations([
       'addMessageMutation',
       'updateMessageMutation',
-      'deleteMessageMutation'
+      'deleteMessageMutation',
+      'addCommentMutation'
     ]),
     editMessage(message) {
       this.messageToEdit = message;

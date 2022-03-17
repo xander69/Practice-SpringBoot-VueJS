@@ -31,8 +31,7 @@ export default {
         text: this.text,
         message: {
           id: this.messageId
-        },
-        author: this.profile
+        }
       })
       this.text = ''
     }

@@ -47,17 +47,20 @@ export default createStore({
         addCommentMutation(state, comment) {
             const updateIndex = state.messages.findIndex(item => item.id === comment.message.id)
             const message = state.messages[updateIndex]
-            state.messages = [
-                ...state.messages.slice(0, updateIndex),
-                {
-                    ...message,
-                    comments: [
-                        ...message.comments || [],
-                        comment
-                    ]
-                },
-                ...state.messages.slice(updateIndex + 1)
-            ]
+            // check to avoid race condition problem
+            if (!message.comments.find(item => item.id === comment.id)) {
+                state.messages = [
+                    ...state.messages.slice(0, updateIndex),
+                    {
+                        ...message,
+                        comments: [
+                            ...message.comments || [],
+                            comment
+                        ]
+                    },
+                    ...state.messages.slice(updateIndex + 1)
+                ]
+            }
         }
     },
     actions: {
@@ -73,10 +76,7 @@ export default createStore({
         },
         async addMessage({commit, state}, message) {
             const response = await messageApi.add(message)
-            const data = {
-                ...response.data,
-                author: state.profile
-            }
+            const data = response.data
             // check to avoid race condition problem
             const index = state.messages.findIndex(item => item.id === data.id)
             if (index > -1) {
@@ -86,8 +86,9 @@ export default createStore({
             }
         },
         async updateMessage({commit}, message) {
-            await messageApi.update(message)
-            commit('updateMessageMutation', message)
+            const response = await messageApi.update(message)
+            const data = response.data
+            commit('updateMessageMutation', data)
         },
         async removeMessage({commit}, message) {
             await messageApi.remove(message.id)
@@ -95,10 +96,7 @@ export default createStore({
         },
         async addComment({commit}, comment) {
             const response = await commentApi.add(comment)
-            const data = {
-                ...response.data,
-                message: comment.message
-            }
+            const data = response.data
             commit('addCommentMutation', data)
         }
     }

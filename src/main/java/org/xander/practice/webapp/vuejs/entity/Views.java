@@ -9,4 +9,7 @@ public interface Views {
 
   interface FullMessage extends IdName {
   }
+
+  interface FullComment extends IdName {
+  }
 }
