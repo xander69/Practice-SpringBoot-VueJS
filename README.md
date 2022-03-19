@@ -159,3 +159,7 @@
 17. Решение циклических ссылок в JSON. Vue debug. Spring Boot Rest
 
     https://www.youtube.com/watch?v=fS4gR8gttes
+
+18. Бесконечная прокрутка списков. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=lqQKNgFZvfI

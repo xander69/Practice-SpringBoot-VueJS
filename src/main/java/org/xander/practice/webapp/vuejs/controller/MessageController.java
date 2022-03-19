@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +20,12 @@ import org.xander.practice.webapp.vuejs.entity.Message;
 import org.xander.practice.webapp.vuejs.entity.User;
 import org.xander.practice.webapp.vuejs.entity.Views;
 import org.xander.practice.webapp.vuejs.model.EventType;
+import org.xander.practice.webapp.vuejs.model.MessagePage;
 import org.xander.practice.webapp.vuejs.model.ObjectType;
 import org.xander.practice.webapp.vuejs.service.CustomOidcUserService;
 import org.xander.practice.webapp.vuejs.service.MessageService;
 import org.xander.practice.webapp.vuejs.service.WsSender;
 
-import java.util.List;
 import java.util.function.BiConsumer;
 
 @RestController
@@ -45,8 +48,10 @@ public class MessageController {
   @GetMapping
   @JsonView(Views.FullMessage.class)
   public @ResponseBody
-  List<Message> list() {
-    return messageService.getAllMessages();
+  MessagePage list(
+      @PageableDefault(size = 3, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+  ) {
+    return messageService.getMessagePage(pageable);
   }
 
   @GetMapping("/{id}")

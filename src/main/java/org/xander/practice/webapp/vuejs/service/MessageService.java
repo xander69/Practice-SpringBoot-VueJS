@@ -6,9 +6,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.xander.practice.webapp.vuejs.entity.Message;
 import org.xander.practice.webapp.vuejs.entity.User;
+import org.xander.practice.webapp.vuejs.model.MessagePage;
 import org.xander.practice.webapp.vuejs.model.MetaObject;
 import org.xander.practice.webapp.vuejs.repository.MessageRepository;
 
@@ -35,6 +38,14 @@ public class MessageService {
 
   public List<Message> getAllMessages() {
     return messageRepository.findAll();
+  }
+
+  public MessagePage getMessagePage(Pageable pageable) {
+    Page<Message> page = messageRepository.findAll(pageable);
+    return new MessagePage(
+        page.getContent(),
+        pageable.getPageNumber(),
+        page.getTotalPages());
   }
 
   public Message addMessage(Message message, User author) {

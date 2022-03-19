@@ -7,7 +7,9 @@ export default createStore({
     state() {
         return {
             messages: [],
-            profile: {}
+            profile: {},
+            currentPage: -1,
+            totalPages: 0
         }
     },
     getters: {
@@ -61,6 +63,22 @@ export default createStore({
                     ...state.messages.slice(updateIndex + 1)
                 ]
             }
+        },
+        addMessagePageMutation(state, messages) {
+            const targetMessages = state.messages
+                .concat(messages)
+                // to avoid duplications
+                .reduce((res, val) => {
+                    res[val.id] = val
+                    return res
+                }, {})
+            state.messages = Object.values(targetMessages)
+        },
+        updateCurrentPageMutation(state, currentPage) {
+            state.currentPage = currentPage
+        },
+        updateTotalPagesMutation(state, totalPages) {
+            state.totalPages = totalPages
         }
     },
     actions: {
@@ -98,6 +116,13 @@ export default createStore({
             const response = await commentApi.add(comment)
             const data = response.data
             commit('addCommentMutation', data)
+        },
+        async loadPage({commit, state}) {
+            const response = await messageApi.page(state.currentPage + 1)
+            const data = response.data
+            commit('addMessagePageMutation', data.messages)
+            commit('updateCurrentPageMutation', Math.min(data.currentPage, data.totalPages - 1))
+            commit('updateTotalPagesMutation', data.totalPages)
         }
     }
 })

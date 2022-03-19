@@ -61,7 +61,7 @@ export default {
       return response
     })
     this.setProfile()
-    this.setMessages()
+    this.loadPage()
     connectWs()
   },
   computed: {
@@ -72,7 +72,7 @@ export default {
   methods: {
     ...mapActions([
       'setProfile',
-      'setMessages'
+      'loadPage'
     ]),
     showMessages() {
       this.$router.push('/')
