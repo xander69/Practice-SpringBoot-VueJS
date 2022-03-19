@@ -163,3 +163,8 @@
 18. Бесконечная прокрутка списков. Spring Boot Rest
 
     https://www.youtube.com/watch?v=lqQKNgFZvfI
+
+19. Подписки пользователей. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=P9oy1F1mi_k
+

@@ -12,4 +12,7 @@ public interface Views {
 
   interface FullComment extends IdName {
   }
+
+  interface FullProfile extends IdName {
+  }
 }
