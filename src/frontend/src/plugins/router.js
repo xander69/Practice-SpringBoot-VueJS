@@ -10,7 +10,7 @@ export default createRouter({
         name: 'Home',
         component: MessageList
     }, {
-        path: '/profile',
+        path: '/user/:id?',
         name: 'Profile',
         component: ProfilePage
     }, {

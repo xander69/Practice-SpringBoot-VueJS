@@ -10,8 +10,8 @@
         Messages
       </v-btn>
       <v-btn @click="showProfile">
-        Profile
-        <img :src="profile.userpic" alt="userpic" width="40" class="ml-4"/>
+        <span class="mr-2">Profile</span>
+        <UserPicture :user="profile" :size="40"></UserPicture>
       </v-btn>
       <v-tooltip bottom>
         <template v-slot:activator="{props}">
@@ -43,6 +43,7 @@
 import axios from 'axios'
 import {connectWs, disconnectWs} from '@/util/ws'
 import {mapActions, mapGetters} from 'vuex'
+import UserPicture from '@/components/UserPicture'
 
 const AUTHORIZATION_HEADER = 'Authorization'
 const TOKEN_MIN_VALIDITY_SECONDS = 70
@@ -50,6 +51,7 @@ const TOKEN_MIN_VALIDITY_SECONDS = 70
 export default {
   name: 'App',
   props: ['keycloak'],
+  components: {UserPicture},
   created() {
     axios.interceptors.request.use(async config => {
       await this.keycloak.updateToken(TOKEN_MIN_VALIDITY_SECONDS)
@@ -78,7 +80,7 @@ export default {
       this.$router.push('/')
     },
     showProfile() {
-      this.$router.push('/profile')
+      this.$router.push('/user')
     },
     logout() {
       const logoutOptions = {redirectUri: "http://localhost:8080/"}

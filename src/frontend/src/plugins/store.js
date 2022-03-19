@@ -1,7 +1,7 @@
 import {createStore} from 'vuex'
-import axios from 'axios'
 import messageApi from '@/api/messages'
 import commentApi from '@/api/comments'
+import profileApi from '@/api/profile'
 
 export default createStore({
     state() {
@@ -83,7 +83,7 @@ export default createStore({
     },
     actions: {
         async setProfile({commit}) {
-            axios.get('/api/user/current').then(response => {
+            profileApi.getCurrent().then(response => {
                 commit('setProfileMutation', response.data)
             })
         },

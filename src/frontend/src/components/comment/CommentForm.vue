@@ -3,8 +3,9 @@
     <v-text-field
         counter="500"
         label="Add comment"
-        placeholder="Write something"
+        density="compact"
         @keyup.enter="save"
+        class="mr-4"
         v-model="text"/>
     <v-btn @click="save">
       Add

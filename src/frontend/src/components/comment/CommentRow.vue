@@ -1,7 +1,7 @@
 <template>
   <v-list-item>
     <v-list-item-avatar>
-      <v-avatar :image="comment.author.userpic" size="24"></v-avatar>
+      <UserPicture :user="comment.author" :size="24"/>
     </v-list-item-avatar>
     <v-list-item-title class="ml-4">
       <v-list-item-title>
@@ -9,7 +9,12 @@
       </v-list-item-title>
       <v-list-item-subtitle>
         <v-list-item-title class="text-caption">
-          {{ comment.author.name }}, {{ comment.createDt }}
+          <router-link :to="`/user/${comment.author.id}`">
+            {{ comment.author.name }}
+          </router-link>
+          <span class="ml-4">
+            {{ comment.createDt }}
+          </span>
         </v-list-item-title>
       </v-list-item-subtitle>
     </v-list-item-title>
@@ -17,9 +22,12 @@
 </template>
 
 <script>
+import UserPicture from '@/components/UserPicture'
+
 export default {
   name: 'CommentRow',
-  props: ['comment']
+  props: ['comment'],
+  components: {UserPicture}
 }
 </script>
 
