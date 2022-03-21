@@ -15,6 +15,7 @@
 * WebSocket, STOMP, SockJS
 * Material Design
 * Open Graph Protocol
+* Sentry
 
 ### References
 
@@ -175,3 +176,15 @@
 21. Подписки с подтверждением: фронтенд. Spring Boot Rest
 
     https://www.youtube.com/watch?v=x3Zwl4QilvA
+
+22. Sentry: собираем ошибки от пользователей. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=JrY2MezfUX4
+
+    ```shell script
+    npm install --save @sentry/vue @sentry/tracing
+    ```
+
+23. Собираем JAR с Vue.js внутри. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=zZ7Z7aL2WFk

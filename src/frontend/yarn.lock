@@ -1038,6 +1038,81 @@
   "resolved" "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
   "version" "1.0.0-next.21"
 
+"@sentry/browser@6.19.1":
+  "integrity" "sha512-nU73PecOoMwrsw2WRJW+oQSSfgGkcY3So3JH7qwRHnnk4Gx56TkDfS0AOrNRsSpIQXj1UbSFIWKzz6ajsOg9OA=="
+  "resolved" "https://registry.npmjs.org/@sentry/browser/-/browser-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/core" "6.19.1"
+    "@sentry/types" "6.19.1"
+    "@sentry/utils" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/core@6.19.1":
+  "integrity" "sha512-ZSIFnwYCzABK1jX1iMwUbaAoWbbJear0wM+gSZvJpSUJ1dAXV1OZyL7kXtEJRtATahIlcrMou5ewIoeJizeWAw=="
+  "resolved" "https://registry.npmjs.org/@sentry/core/-/core-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/hub" "6.19.1"
+    "@sentry/minimal" "6.19.1"
+    "@sentry/types" "6.19.1"
+    "@sentry/utils" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/hub@6.19.1":
+  "integrity" "sha512-BgUwdxxXntGohAYrXtYrYBA6QzOeRz3NINuS838n7SRTkGf9gBJ/Rd3dyOWUrzJciKty7rmvYIwTA0oo91AMkw=="
+  "resolved" "https://registry.npmjs.org/@sentry/hub/-/hub-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/types" "6.19.1"
+    "@sentry/utils" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/minimal@6.19.1":
+  "integrity" "sha512-Xre3J6mjWEcQhDmQ3j4g71J8f0nDgg2p7K41SngibfZVYSOe8jAowxSI9JuWD7juuwT5GVRVCqLs+Y6mWDBaoQ=="
+  "resolved" "https://registry.npmjs.org/@sentry/minimal/-/minimal-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/hub" "6.19.1"
+    "@sentry/types" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/tracing@^6.19.1":
+  "integrity" "sha512-o34+h0j70dszcIwpCIbmO4UauPurpqLvcPO3JsFhRdxQhwQaQgMwhFklbAt7al9oEDYkjlS0gzhhlOCz4IS9kA=="
+  "resolved" "https://registry.npmjs.org/@sentry/tracing/-/tracing-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/hub" "6.19.1"
+    "@sentry/minimal" "6.19.1"
+    "@sentry/types" "6.19.1"
+    "@sentry/utils" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/types@6.19.1":
+  "integrity" "sha512-ovmNYdqD2MKLmru4calxetX1xjJdYim+HEI/GzwvVUYshsaXRq4EiQ17h3DAy90MV7JH279PmMoPGDTOpufq+Q=="
+  "resolved" "https://registry.npmjs.org/@sentry/types/-/types-6.19.1.tgz"
+  "version" "6.19.1"
+
+"@sentry/utils@6.19.1":
+  "integrity" "sha512-mWcQbQ1yO7PooLpJpQK84+wOfxGeb8iUKRb8inO+2Eg6VksDbXRuJ89Yd4APBTRxBj5Wihy48bPuVfKtovtm8g=="
+  "resolved" "https://registry.npmjs.org/@sentry/utils/-/utils-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/types" "6.19.1"
+    "tslib" "^1.9.3"
+
+"@sentry/vue@^6.19.1":
+  "integrity" "sha512-iFcmAVAvreGsjFv1FNNoSYtfUSTsreOfDzpNUT9yWk0TYDJEEC6R6wntbbbea31Hy4a700LvmJz6VToLgS6yMw=="
+  "resolved" "https://registry.npmjs.org/@sentry/vue/-/vue-6.19.1.tgz"
+  "version" "6.19.1"
+  dependencies:
+    "@sentry/browser" "6.19.1"
+    "@sentry/core" "6.19.1"
+    "@sentry/minimal" "6.19.1"
+    "@sentry/types" "6.19.1"
+    "@sentry/utils" "6.19.1"
+    "tslib" "^1.9.3"
+
 "@sideway/address@^4.1.3":
   "integrity" "sha512-8ncEUtmnTsMmL7z1YPB47kPUq7LpKWJNFPsRzHiIajGC5uXlWGn+AmkYPcHNl8S4tcEGx+cnORnNYaw2wvL+LQ=="
   "resolved" "https://registry.npmjs.org/@sideway/address/-/address-4.1.3.tgz"
@@ -5963,6 +6038,11 @@
   "resolved" "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
   "version" "0.0.3"
 
+"tslib@^1.9.3":
+  "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
+  "version" "1.14.1"
+
 "tslib@^2.0.3":
   "integrity" "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
@@ -6130,7 +6210,7 @@
     "hash-sum" "^2.0.0"
     "loader-utils" "^2.0.0"
 
-"vue-router@^4.0.13":
+"vue-router@^4.0.13", "vue-router@3.x || 4.x":
   "integrity" "sha512-LmXrC+BkDRLak+d5xTMgUYraT3Nj0H/vCbP+7usGvIl9Viqd1UP6AsP0i69pSbn9O0dXK/xCdp4yPw21HqV9Jw=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.0.13.tgz"
   "version" "4.0.13"
@@ -6150,7 +6230,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.19", "vue@3.2.31":
+"vue@^2 || ^3.2.13", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.19", "vue@2.x || 3.x", "vue@3.2.31":
   "integrity" "sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.31.tgz"
   "version" "3.2.31"

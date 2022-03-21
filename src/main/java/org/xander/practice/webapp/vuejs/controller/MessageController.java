@@ -1,6 +1,7 @@
 package org.xander.practice.webapp.vuejs.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.sentry.spring.tracing.SentrySpan;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class MessageController {
     this.wsSender = wsSender.getSender(ObjectType.MESSAGE, Views.FullMessage.class);
   }
 
+  @SentrySpan("get message page")
   @GetMapping
   @JsonView(Views.FullMessage.class)
   public @ResponseBody

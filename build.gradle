@@ -31,6 +31,8 @@ dependencies {
     implementation 'org.keycloak:keycloak-spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.jsoup:jsoup:1.14.3'
+    implementation 'io.sentry:sentry-spring-boot-starter:5.7.0'
+    implementation 'io.sentry:sentry-logback:5.7.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
