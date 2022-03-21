@@ -48,6 +48,7 @@ public class MessageService {
 
   public MessagePage findForUser(Pageable pageable, User user) {
     List<User> channels = userSubscriptionRepository.findBySubscriber(user).stream()
+        .filter(UserSubscription::getActive)
         .map(UserSubscription::getChannel)
         .collect(Collectors.toList());
 

@@ -171,3 +171,7 @@
 20. Подписки с подтверждением. Spring Boot Rest
 
     https://www.youtube.com/watch?v=bVAWMZTD8pI
+
+21. Подписки с подтверждением: фронтенд. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=x3Zwl4QilvA

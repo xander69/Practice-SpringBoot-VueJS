@@ -33,7 +33,14 @@
           </v-row>
           <v-row>
             <v-col cols="3">Subscribers:</v-col>
-            <v-col>{{ profile.subscribers && profile.subscribers.length }}</v-col>
+            <v-col v-if="isMyProfile">
+              <router-link :to="`/subscriptions/${profile.id}`">
+                {{ profile.subscribers && profile.subscribers.length }}
+              </router-link>
+            </v-col>
+            <v-col v-else>
+              {{ profile.subscribers && profile.subscribers.length }}
+            </v-col>
           </v-row>
         </v-container>
         <v-btn v-if="!isMyProfile"
