@@ -49,9 +49,11 @@ public class MessageController {
   @JsonView(Views.FullMessage.class)
   public @ResponseBody
   MessagePage list(
-      @PageableDefault(size = 3, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+      @PageableDefault(size = 3, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
+      KeycloakPrincipal<KeycloakSecurityContext> principal
   ) {
-    return messageService.getMessagePage(pageable);
+    User user = userService.loadUser(principal.getKeycloakSecurityContext().getToken());
+    return messageService.findForUser(pageable, user);
   }
 
   @GetMapping("/{id}")

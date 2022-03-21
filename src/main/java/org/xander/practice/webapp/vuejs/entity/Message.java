@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,5 +76,5 @@ public class Message {
 
   @OneToMany(mappedBy = "message", orphanRemoval = true)
   @JsonView(Views.FullMessage.class)
-  private List<Comment> comments;
+  private List<Comment> comments = new ArrayList<>();
 }

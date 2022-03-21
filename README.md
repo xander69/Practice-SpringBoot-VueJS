@@ -168,3 +168,6 @@
 
     https://www.youtube.com/watch?v=P9oy1F1mi_k
 
+20. Подписки с подтверждением. Spring Boot Rest
+
+    https://www.youtube.com/watch?v=bVAWMZTD8pI

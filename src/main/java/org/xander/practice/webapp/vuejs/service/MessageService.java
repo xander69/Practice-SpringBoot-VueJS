@@ -11,15 +11,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.xander.practice.webapp.vuejs.entity.Message;
 import org.xander.practice.webapp.vuejs.entity.User;
+import org.xander.practice.webapp.vuejs.entity.UserSubscription;
 import org.xander.practice.webapp.vuejs.model.MessagePage;
 import org.xander.practice.webapp.vuejs.model.MetaObject;
 import org.xander.practice.webapp.vuejs.repository.MessageRepository;
+import org.xander.practice.webapp.vuejs.repository.UserSubscriptionRepository;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -30,18 +33,27 @@ public class MessageService {
   private static final Pattern IMAGE_REGEX = Pattern.compile(IMAGE_PATTERN, Pattern.CASE_INSENSITIVE);
 
   private final MessageRepository messageRepository;
+  private final UserSubscriptionRepository userSubscriptionRepository;
 
   @Autowired
-  public MessageService(MessageRepository messageRepository) {
+  public MessageService(MessageRepository messageRepository,
+                        UserSubscriptionRepository userSubscriptionRepository) {
     this.messageRepository = messageRepository;
+    this.userSubscriptionRepository = userSubscriptionRepository;
   }
 
   public List<Message> getAllMessages() {
     return messageRepository.findAll();
   }
 
-  public MessagePage getMessagePage(Pageable pageable) {
-    Page<Message> page = messageRepository.findAll(pageable);
+  public MessagePage findForUser(Pageable pageable, User user) {
+    List<User> channels = userSubscriptionRepository.findBySubscriber(user).stream()
+        .map(UserSubscription::getChannel)
+        .collect(Collectors.toList());
+
+    channels.add(user);
+
+    Page<Message> page = messageRepository.findByAuthorIn(channels, pageable);
     return new MessagePage(
         page.getContent(),
         pageable.getPageNumber(),

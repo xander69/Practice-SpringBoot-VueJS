@@ -1,9 +1,6 @@
 package org.xander.practice.webapp.vuejs.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +10,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,31 +51,18 @@ public class User {
   @JsonView(Views.FullProfile.class)
   private Date lastVisit;
 
-  @ManyToMany
-  @JoinTable(
-      name = "USER_SUBSCRIPTIONS",
-      joinColumns = @JoinColumn(name = "SUBSCRIBER_ID"),
-      inverseJoinColumns = @JoinColumn(name = "CHANNEL_ID")
-  )
   @JsonView(Views.FullProfile.class)
-  @JsonIdentityReference
-  @JsonIdentityInfo(
-      property = "id",
-      generator = ObjectIdGenerators.PropertyGenerator.class
+  @OneToMany(
+      mappedBy = "subscriber",
+      orphanRemoval = true
   )
-  private Set<User> subscriptions = new HashSet<>();
+  private Set<UserSubscription> subscriptions = new HashSet<>();
 
-  @ManyToMany
-  @JoinTable(
-      name = "USER_SUBSCRIPTIONS",
-      joinColumns = @JoinColumn(name = "CHANNEL_ID"),
-      inverseJoinColumns = @JoinColumn(name = "SUBSCRIBER_ID")
-  )
   @JsonView(Views.FullProfile.class)
-  @JsonIdentityReference
-  @JsonIdentityInfo(
-      property = "id",
-      generator = ObjectIdGenerators.PropertyGenerator.class
+  @OneToMany(
+      mappedBy = "channel",
+      orphanRemoval = true,
+      cascade = CascadeType.ALL
   )
-  private Set<User> subscribers = new HashSet<>();
+  private Set<UserSubscription> subscribers = new HashSet<>();
 }
